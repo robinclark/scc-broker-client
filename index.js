@@ -136,6 +136,7 @@ module.exports.attach = function (broker, options) {
   });
 
   var emitClientJoinCluster = function () {
+    console.log('emitClientJoinCluster');
     stateSocket.emit('clientJoinCluster', stateSocketData, function (err, data) {
       if (err) {
         setTimeout(emitClientJoinCluster, retryDelay);
