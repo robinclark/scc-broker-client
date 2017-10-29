@@ -17,6 +17,7 @@ module.exports.attach = function (broker, options) {
 
   var clusterClient = new ClusterBrokerClient(broker, {authKey: authKey});
   clusterClient.on('error', function (err) {
+    console.log('ClusterBrokerClient err');
     console.error(err);
   });
 
