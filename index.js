@@ -51,9 +51,11 @@ module.exports.attach = function (broker, options) {
     },
     secure: options.secure
   };
+  console.log('scc-broker-client opts:', scStateSocketOptions);
+
   var stateSocket = scClient.connect(scStateSocketOptions);
   stateSocket.on('error', function (err) {
-    console.error(err);
+    console.error('scc-broker-client', err);
   });
 
   var stateSocketData = {
@@ -138,6 +140,9 @@ module.exports.attach = function (broker, options) {
         setTimeout(emitClientJoinCluster, retryDelay);
         return;
       }
+
+      console.log('emitClientJoinCluster - data:', data);
+
       updateServerCluster(data);
       var mapper = getMapper(serverInstances);
       clusterClient.subMapperPush(mapper, serverInstances);
